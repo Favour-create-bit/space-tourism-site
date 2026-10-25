@@ -1,0 +1,406 @@
+:root {
+  --dark: #0B0D17;
+  --blue-300: #D0D6F9;
+  --white: #FFFFFF;
+  --font-heading: 'Bellefair', serif;
+  --font-condensed: 'Barlow Condensed', sans-serif;
+  --font-body: 'Barlow', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+
+  background-color: var(--dark);
+  background-image: url('assets/technology/background-technology-desktop.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  font-family: var(--font-body);
+  color: var(--blue-300);
+
+  display: grid;
+  grid-template-areas:
+    "logo    nav"
+    "content image";
+  grid-template-columns: minmax(0, 42.4fr) minmax(0, 57.6fr);
+  grid-template-rows: auto 1fr;
+}
+
+/* make .content and .explore direct grid items of body */
+main { display: contents; }
+
+/* Spacing scales with the viewport (values taken from the design at ~1440px wide)
+   so the proportions hold on any screen size. */
+:root {
+  --header-top: clamp(16px, 4.4vh, 40px);
+  --header-h:   clamp(64px, 10.7vh, 96px);
+  --side:       clamp(24px, 11.5vw, 166px);   /* left edge of the text block and the line */
+}
+
+/* ---------- header ---------- */
+
+.logo {
+  grid-area: logo;
+  align-self: center;
+  margin: var(--header-top) 0 0 clamp(24px, 3.85vw, 55px);
+  line-height: 0;
+}
+.logo img { width: clamp(36px, 3.3vw, 48px); height: auto; }
+
+.line {
+  grid-area: logo;
+  align-self: center;
+  margin: var(--header-top) -2.1vw 0 var(--side);
+  height: 1px;
+  background: rgba(255, 255, 255, 0.25);
+  z-index: 1;
+}
+
+.navigation {
+  grid-area: nav;
+  align-self: start;
+  margin-top: var(--header-top);
+  height: var(--header-h);
+  padding-inline: clamp(16px, 8.5vw, 122px) clamp(16px, 11.5vw, 166px);
+  display: flex;
+  justify-content: space-between;   /* equal gaps between every link */
+  gap: clamp(16px, 2vw, 40px);      /* minimum gap */
+
+  background-color: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(40px);
+}
+
+.navigation a {
+  display: flex;
+  align-items: center;
+  font-family: var(--font-condensed);
+  font-size: clamp(12px, 1.1vw, 16px);
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--white);
+  border-bottom: 3px solid transparent;
+  white-space: nowrap;
+}
+.navigation a b { margin-right: 0.6em; font-weight: 700; }
+.navigation a:hover  { border-bottom-color: rgba(255, 255, 255, 0.5); }
+.navigation a.active { border-bottom-color: var(--white); }
+.active {
+  border-bottom-color: var(--white);
+}
+
+.technology-content {
+  grid-area: content;
+  align-self: center;
+  justify-self: start;
+  margin-left: var(--side);
+  width: clamp(420px, 38vw, 560px);
+}
+
+.technology-info {
+    display: flex;
+    flex-direction: row;
+}
+
+.terminology-selector {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(15px, 2vw, 30px);
+    margin-bottom: clamp(16px, 3.5vh, 32px);
+    margin-right: clamp(32px, 4vw, 80px);
+}
+.selector {
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    border: 1px solid var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-family: var(--font-heading);
+}
+
+
+
+.technology-image {
+    grid-area: image;
+    align-self: center;
+    justify-self: center;
+    position: relative;
+    left: 23%;
+    
+}
+#technology-image {
+    width: 90%;
+    height: 90%;
+}
+
+.terminology-info h1 {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    color: var(--white);
+    font-size: 2.5em;
+}
+p:first-of-type {
+  color: white;
+  font-family: var(--font-condensed);
+}
+
+.intro {
+   margin-bottom: 20%;
+   font-family: var(--font-condensed);
+   letter-spacing: 0.17em;
+   font-size: 1.3em;
+   color: var(--white);
+    
+}
+.active-tech {
+  background-color: white;
+  color: black;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* ---------- Technology page: mobile layout ---------- */
+@media screen and (max-width: 768px) {
+  body {
+    min-height: 100vh;
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    background-image: url("assets/technology/background-technology-mobile.jpg");
+    background-position: center top;
+    background-size: cover;
+  }
+
+  .logo {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    margin: 0;
+    z-index: 10;
+  }
+
+  .logo img {
+    width: 40px;
+    height: auto;
+  }
+
+  .line {
+    display: none;
+  }
+
+  .navigation {
+    display: none;
+  }
+
+  /* The page title sits beneath the header, aligned to the left. */
+  .technology-content {
+    order: 1;
+    width: 100%;
+    margin: 0;
+    padding: 112px 24px 0;
+    align-self: stretch;
+  }
+
+  .technology-intro {
+    width: 100%;
+  }
+
+  .intro {
+    margin: 0 0 32px;
+    font-size: 16px;
+    line-height: 1.2;
+    letter-spacing: 0.17em;
+    text-align: left;
+  }
+
+  /* Move the wide technology photo between the title and the controls. */
+  .technology-image {
+    order: 2;
+    position: static;
+    width: calc(100% + 48px);
+    margin: 0 -24px 32px;
+    align-self: stretch;
+    justify-self: auto;
+  }
+
+  #technology-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 375 / 170;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* Numbered controls become a horizontal row on phones. */
+  .technology-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .terminology-selector {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 16px;
+    margin: 0 0 26px;
+  }
+
+  .selector {
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .terminology-info {
+    width: 100%;
+    text-align: center;
+  }
+
+  .terminology-info p:first-of-type {
+    margin: 0 0 12px;
+    font-size: 14px;
+    letter-spacing: 0.15em;
+    color: var(--blue-300);
+    text-transform: uppercase;
+  }
+
+  .terminology-info h1 {
+    margin: 0 0 16px;
+    font-size: clamp(24px, 7vw, 32px);
+    line-height: 1.2;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  #terminology-description {
+    margin: 0 auto 48px;
+    max-width: 460px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--blue-300);
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .technology-content {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .technology-image {
+    width: calc(100% + 40px);
+    margin-right: -20px;
+    margin-left: -20px;
+  }
+
+  .intro {
+    font-size: 14px;
+  }
+
+  .terminology-selector {
+    gap: 12px;
+  }
+}
+
+
+/* Mobile navigation overlay, opened by the existing menu-toggle script. */
+@media screen and (max-width: 768px) {
+  .hamburger {
+    display: block;
+    position: absolute;
+    top: 33px;
+    right: 24px;
+    z-index: 102;
+    cursor: pointer;
+    line-height: 0;
+  }
+
+  .hamburger img {
+    display: block;
+    width: 24px;
+    height: auto;
+  }
+
+  body.menu-open::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(11, 13, 23, 0.96);
+    backdrop-filter: blur(12px);
+    z-index: 100;
+  }
+
+  body.menu-open > .logo,
+  body.menu-open > .technology-content,
+  body.menu-open > .technology-image,
+  body.menu-open > .line {
+    visibility: hidden;
+  }
+
+  body.menu-open > .navigation {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0;
+    position: fixed;
+    top: 100px;
+    right: 24px;
+    width: min(80%, 320px);
+    height: auto;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    padding: 0 24px;
+    margin: 0;
+    background: transparent;
+    backdrop-filter: none;
+    z-index: 101;
+  }
+
+  body.menu-open .navigation a {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 20px 0;
+    font-family: var(--font-condensed);
+    font-size: 16px;
+    letter-spacing: 0.17em;
+    color: var(--white);
+    text-decoration: none;
+    white-space: nowrap;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  }
+
+  body.menu-open .navigation a b {
+    margin-right: 12px;
+  }
+}
